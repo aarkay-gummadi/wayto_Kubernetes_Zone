@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demoapp-green
+  labels:
+    app: demoapp
+    env: green
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: demoapp
+      env: green
+  template:
+    metadata:
+      labels:
+        app: demoapp
+        env: green
+    spec:
+      containers:
+      - name: myapp
+        image: myapp:v2.0
+        ports:
+        - containerPort: 80

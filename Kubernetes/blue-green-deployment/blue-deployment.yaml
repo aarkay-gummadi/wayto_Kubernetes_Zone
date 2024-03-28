@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demoapp-blue
+  labels:
+    app: demoapp
+    env: blue
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: demoapp
+      env: blue
+  template:
+    metadata:
+      labels:
+        app: demoapp
+        env: blue
+    spec:  
+      containers:
+        - name: demo
+          image: demoapp:v1.0
+          ports:
+            - containerPort: 80

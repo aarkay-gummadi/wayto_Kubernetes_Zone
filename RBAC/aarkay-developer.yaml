@@ -1,0 +1,28 @@
+---
+apiVersion: rbac.authorization.k8s.io
+kind: Role
+metadata: 
+  name: roboshop-developer
+  namespace: aarkay
+rules:
+  - apiGroups: ["*"] # "" indicates the core API group
+    resources: ["deployments","services","secrets","configmaps"]
+    verbs: ["get","list","watch","create","update","delete"]  
+  - apiGroups: ["*"] # "" indicates the core API group
+    resources: ["pods"]
+    verbs: ["get","list","watch"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  namespace: roboshop
+  name: roboshop-developer-rolebinding
+roleRef: 
+  name: roboshop-developer
+  kind: Role
+  apiGroup: rbac.authorization.k8s.io  
+subjects:
+  - name: roboshop
+    kind: User
+    apiGroup: rbac.authorization.k8s.io

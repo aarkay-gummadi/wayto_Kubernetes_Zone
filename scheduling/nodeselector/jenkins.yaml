@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nodeselector
+  labels:
+    app: nginx
+    purpose: nodeselector
+spec:
+  nodeName: "aks-nodepool1-32808340-vmss000000"
+  containers:
+    - name: jenkins
+      image: jenkins/jenkins:jdk11
+      ports:
+        - containerPort: 8080
